@@ -1,0 +1,264 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* 重构为国际顶尖SaaS设计系统 - 未来科技感 + 时尚艺术感 */
+:root {
+  /* 电光蓝/幽灵蓝配色系统 */
+  --ghost-blue: #4DFFFF;
+  --ghost-blue-glow: #4DFFFF40;
+  --deep-blue: #2B5876;
+  --gradient-start: #A8D8FF;
+  --gradient-end: #B8A8FF;
+  
+  /* 磨砂玻璃系统 */
+  --glass-white: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: rgba(31, 38, 135, 0.15);
+  
+  /* 高级中性色 */
+  --soft-white: #FEFEFE;
+  --pearl-white: #F8F9FB;
+  --graphite: #0F1419;
+  --slate-muted: #64748B;
+  
+  /* 杂志级排版系统 */
+  --letter-spacing-wide: 0.08em;
+  --letter-spacing-title: 0.02em;
+  
+  --background: oklch(0.98 0.005 240);
+  --foreground: oklch(0.08 0.01 250);
+  --card: oklch(1 0 0 / 0.75);
+  --card-foreground: oklch(0.08 0.01 250);
+  --popover: oklch(1 0 0 / 0.85);
+  --popover-foreground: oklch(0.08 0.01 250);
+  --primary: oklch(0.75 0.15 195);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.88 0.08 270);
+  --secondary-foreground: oklch(0.08 0.01 250);
+  --muted: oklch(0.96 0.005 240);
+  --muted-foreground: oklch(0.5 0.01 240);
+  --accent: oklch(0.85 0.12 255);
+  --accent-foreground: oklch(0.08 0.01 250);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.92 0.005 240 / 0.3);
+  --input: oklch(0.95 0.005 240 / 0.5);
+  --ring: oklch(0.75 0.15 195);
+  --radius: 1rem;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply text-foreground;
+    /* 渐变背景 + 颗粒噪点质感 */
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  /* 颗粒噪点效果 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  body > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* 磨砂玻璃卡片效果 - 高级科技感标志 */
+.glass-card {
+  background: var(--glass-white);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.08),
+    0 2px 8px 0 rgba(31, 38, 135, 0.05),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+/* 多层堆叠阴影 - 悬浮科技面板 */
+.elite-shadow {
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 4px 12px rgba(31, 38, 135, 0.08),
+    0 8px 24px rgba(31, 38, 135, 0.06);
+}
+
+.elite-shadow-hover {
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(31, 38, 135, 0.12),
+    0 16px 48px rgba(31, 38, 135, 0.10);
+}
+
+/* 电光蓝焦点效果 */
+.neon-focus {
+  box-shadow: 
+    0 0 0 3px var(--ghost-blue-glow),
+    0 0 24px var(--ghost-blue-glow);
+}
+
+/* 极致平滑过渡 */
+.smooth-transition {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ultra-smooth {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* AI脉冲微动效 */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.ai-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* 故障艺术微动效 */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-2px, 2px);
+  }
+  66% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* 杂志级大写标签 */
+.label-caps {
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* 几何感标题 */
+.title-geometric {
+  font-weight: 800;
+  letter-spacing: var(--letter-spacing-title);
+  line-height: 1.1;
+}
+
+/* 极细线条 */
+.ultra-thin-border {
+  border-width: 0.5px;
+}
+
+/* 顶级按钮效果 */
+.btn-elite {
+  background: var(--ghost-blue);
+  color: var(--graphite);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  padding: 0.875rem 2rem;
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 16px rgba(77, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-elite:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(77, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* 渐变文字效果 */
+.gradient-text {
+  background: linear-gradient(135deg, var(--ghost-blue) 0%, var(--deep-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 高级图片容器 */
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
+}
+
+.image-container img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-container:hover img {
+  transform: scale(1.08);
+}
